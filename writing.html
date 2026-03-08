@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Robert Lepenies</title>
+<meta name="description" content="Public writing, commentary, and policy papers by Robert Lepenies — op-eds, essays, and open-access reports on governance, sustainability, and institutional design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1614;
+    --ink-light: #4a433e;
+    --parchment: #f5f0e8;
+    --cream:     #faf7f2;
+    --gold:      #9a7b2e;
+    --gold-light:#c4a04a;
+    --rust:      #8b3a2a;
+    --rule:      #d4c9b8;
+    --white:     #ffffff;
+    --serif:  'Playfair Display', Georgia, serif;
+    --body:   'Libre Baskerville', Georgia, serif;
+    --mono:   'DM Mono', monospace;
+    --col: min(680px, 90vw);
+    --wide: min(1100px, 94vw);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--gold-light); color: var(--white); }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -200%;
+    width: 400%; height: 400%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+    animation: grain 8s steps(10) infinite;
+  }
+  @keyframes grain {
+    0%,100%{transform:translate(0,0)} 10%{transform:translate(-2%,-3%)} 20%{transform:translate(3%,1%)}
+    30%{transform:translate(-1%,4%)} 40%{transform:translate(2%,-2%)} 50%{transform:translate(-3%,3%)}
+    60%{transform:translate(1%,-4%)} 70%{transform:translate(-2%,2%)} 80%{transform:translate(3%,-1%)} 90%{transform:translate(-1%,3%)}
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 max(24px, calc((100vw - var(--wide)) / 2));
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-name {
+    font-family: var(--serif); font-size: 15px; font-weight: 600;
+    letter-spacing: 0.02em; color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11px; font-weight: 300;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-light); text-decoration: none;
+    position: relative; transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -2px;
+    width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-links a.active { color: var(--gold); }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 140px max(24px, calc((100vw - var(--wide)) / 2)) 80px;
+    background: var(--ink); position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: 'Writing';
+    position: absolute; bottom: -60px; right: -20px;
+    font-family: var(--serif);
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 700; color: rgba(255,255,255,0.03);
+    pointer-events: none; user-select: none; white-space: nowrap;
+  }
+  .page-header .eyebrow {
+    font-family: var(--mono); font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .page-header .eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px;
+    background: var(--gold-light); flex-shrink: 0;
+  }
+  .page-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 700; line-height: 1.1;
+    color: var(--white); margin-bottom: 24px;
+  }
+  .page-header h1 em { font-style: italic; font-weight: 400; color: var(--gold-light); }
+  .page-header p {
+    font-size: 16px; line-height: 1.8;
+    color: rgba(245,240,232,0.6); max-width: 560px;
+  }
+
+  /* SECTIONS */
+  .writing-section {
+    padding: clamp(64px, 8vw, 100px) max(24px, calc((100vw - var(--wide)) / 2));
+  }
+  .writing-section:nth-child(even) { background: var(--white); }
+  .writing-section:nth-child(odd) { background: var(--parchment); }
+
+  .section-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 32px; height: 1px;
+    background: var(--gold); flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(28px, 3vw, 42px);
+    font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 48px;
+  }
+  .section-title em { font-style: italic; font-weight: 400; color: var(--ink-light); }
+
+  /* FEATURED CARDS (2-col) */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    max-width: var(--wide);
+    margin: 0 auto;
+  }
+
+  .featured-card {
+    background: var(--cream);
+    display: flex; flex-direction: column;
+    transition: background 0.25s;
+    text-decoration: none; color: inherit;
+  }
+  .featured-card:hover { background: var(--white); }
+
+  .featured-card-img {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+    filter: sepia(10%); border-bottom: 1px solid var(--rule);
+    transition: filter 0.3s;
+  }
+  .featured-card:hover .featured-card-img { filter: sepia(0%); }
+
+  .featured-card-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-tag {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .card-title {
+    font-family: var(--serif); font-size: 20px; font-weight: 700;
+    color: var(--ink); line-height: 1.35; margin-bottom: 12px; flex: 1;
+  }
+  .card-desc {
+    font-size: 14px; line-height: 1.7; color: var(--ink-light); margin-bottom: 20px;
+  }
+  .card-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+    text-decoration: none; border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px; width: fit-content; transition: color 0.2s;
+    margin-top: auto;
+  }
+  .card-link:hover { color: var(--ink); border-color: var(--ink); }
+  .card-link svg { transition: transform 0.2s; }
+  .card-link:hover svg { transform: translateX(3px); }
+
+  /* LIST ROWS */
+  .writing-list { max-width: var(--wide); margin: 0 auto; }
+
+  .writing-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .writing-row:last-child { border-bottom: 1px solid var(--rule); }
+
+  .writing-year {
+    font-family: var(--mono); font-size: 11px; font-weight: 300;
+    letter-spacing: 0.1em; color: var(--gold); padding-top: 4px;
+  }
+
+  .writing-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 600;
+    color: var(--ink); line-height: 1.4; margin-bottom: 4px;
+  }
+
+  .writing-venue {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+    color: var(--ink-light);
+  }
+
+  .writing-action {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-light);
+    text-decoration: none; padding: 8px 16px;
+    border: 1px solid var(--rule); transition: all 0.2s;
+    white-space: nowrap; align-self: start; margin-top: 2px;
+  }
+  .writing-action:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(212, 201, 184, 0.1);
+    padding: 32px max(24px, calc((100vw - var(--wide)) / 2));
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-family: var(--serif); font-size: 14px; font-weight: 600; color: rgba(245,240,232,0.5); }
+  .footer-copy { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: rgba(245,240,232,0.25); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .featured-grid { grid-template-columns: 1fr; }
+    .writing-row { grid-template-columns: 80px 1fr; gap: 16px; }
+    .writing-action { display: none; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Robert Lepenies</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="writing.html" class="active">Writing</a></li>
+    <li><a href="index.html#speaking">Speaking</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="eyebrow">Public Writing</div>
+  <h1>Commentary &<br><em>Essays</em></h1>
+  <p>Op-eds, essays, and policy papers — writing that crosses the line between scholarship and public consequence.</p>
+</div>
+
+<!-- OP-EDS & ESSAYS -->
+<section class="writing-section">
+  <div style="max-width:var(--wide);margin:0 auto;">
+    <div class="section-label">Op-Eds & Essays</div>
+    <h2 class="section-title">Public <em>Writing</em></h2>
+  </div>
+
+  <div class="featured-grid">
+
+    <a href="https://www.timeshighereducation.com" target="_blank" rel="noopener" class="featured-card reveal">
+      <img src="images/publications/pub_3108.png" alt="" class="featured-card-img">
+      <div class="featured-card-body">
+        <div class="card-tag">Times Higher Education · 2019</div>
+        <div class="card-title">Academic Incentives Need to Change if We Are to Build Trust in Science</div>
+        <div class="card-desc">Why the reward structures of academia undermine the very credibility science depends on — and what would need to change.</div>
+        <span class="card-link">
+          Read at Times Higher Education
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a href="http://bostonreview.net/forum/globalization-blame/robert-lepenies-robert-lepenies-responds-dean-baker" target="_blank" rel="noopener" class="featured-card reveal">
+      <img src="images/publications/pub_2826.png" alt="" class="featured-card-img">
+      <div class="featured-card-body">
+        <div class="card-tag">Boston Review · Forum Response</div>
+        <div class="card-title">Is Globalization to Blame?</div>
+        <div class="card-desc">A response in the Boston Review forum on trade, globalisation, and who bears the costs — engaging Dean Baker's argument on economic losers.</div>
+        <span class="card-link">
+          Read at Boston Review
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- POLICY & REPORTS -->
+<section class="writing-section">
+  <div style="max-width:var(--wide);margin:0 auto;">
+    <div class="section-label">Policy & Reports</div>
+    <h2 class="section-title">Open-Access <em>Papers</em></h2>
+
+    <div class="writing-list">
+
+      <div class="writing-row reveal">
+        <div class="writing-year">2020</div>
+        <div>
+          <div class="writing-title">Beyond Boundaries: A Global Message from Young Scientists on COVID-19</div>
+          <div class="writing-venue">Global Young Academy · 23 international scientists</div>
+        </div>
+        <a href="https://globalyoungacademy.net/wp-content/uploads/2020/04/GYA-COVID19-Position-Statement-26.03.2020-2.pdf" target="_blank" rel="noopener" class="writing-action">
+          PDF
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <div class="writing-row reveal">
+        <div class="writing-year">2020</div>
+        <div>
+          <div class="writing-title">Dealing with Interlinkages: A Focused Approach for Implementing the SDGs and Overcoming the COVID-19 Crisis</div>
+          <div class="writing-venue">Scholz, Kloke-Lesch, Lepenies et al. · German Development Institute</div>
+        </div>
+        <a href="http://doi.org/10.5281/zenodo.3859573" target="_blank" rel="noopener" class="writing-action">
+          Read
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <div class="writing-row reveal">
+        <div class="writing-year">2019</div>
+        <div>
+          <div class="writing-title">A New Vision of Water and Sustainability Management in Mining and Post-Mining Landscapes</div>
+          <div class="writing-venue">German National Academy of Sciences Leopoldina · Brazilian Academy of Sciences</div>
+        </div>
+        <a href="https://www.leopoldina.org/uploads/tx_leopublication/2019_PolicyPaper_Water-and-Mining_web.pdf" target="_blank" rel="noopener" class="writing-action">
+          PDF
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <div class="writing-row reveal">
+        <div class="writing-year">2016</div>
+        <div>
+          <div class="writing-title">Why We Need Independent Critique to Achieve the SDGs: The Role of Academics</div>
+          <div class="writing-venue">Blackshaw, R., Lepenies, R. and Max, H. · Blog Commentary</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OPEN ACCESS WORKING PAPERS -->
+<section class="writing-section">
+  <div style="max-width:var(--wide);margin:0 auto;">
+    <div class="section-label">Working Papers</div>
+    <h2 class="section-title">Open <em>Access</em></h2>
+
+    <div class="writing-list">
+
+      <div class="writing-row reveal">
+        <div class="writing-year">2015</div>
+        <div>
+          <div class="writing-title">The Poor Have No Money — So Just Give it to Them! In Favour of Inclusive Aid and Unconditional Cash Transfers</div>
+          <div class="writing-venue">Lauer, L. and Lepenies, R. · EUI Department of Law · MWP 2015/02</div>
+        </div>
+        <a href="http://dx.doi.org/10.2139/ssrn.2570754" target="_blank" rel="noopener" class="writing-action">
+          SSRN
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <div class="writing-row reveal">
+        <div class="writing-year">2014</div>
+        <div>
+          <div class="writing-title">Economists as Political Philosophers: A Critique of Normative Trade Theory</div>
+          <div class="writing-venue">Lepenies, R. · EUI Department of Law · MWP 2014/11</div>
+        </div>
+        <a href="https://ideas.repec.org/p/rsc/rsceui/2014-11.html" target="_blank" rel="noopener" class="writing-action">
+          Read
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Robert Lepenies</div>
+  <div class="footer-copy">© 2026 · team@robertlepenies.com</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => { entry.target.classList.add('visible'); }, idx * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
