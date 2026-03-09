@@ -786,54 +786,72 @@
     margin-top: 12px;
   }
 
-  /* Media link */
-  .media-link-row {
+  /* Media block */
+  a.media-block {
+    display: block;
     margin-top: 64px;
-    padding-top: 48px;
-    border-top: 1px solid var(--rule);
     max-width: var(--wide);
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .media-link-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    opacity: 0.6;
-  }
-
-  .media-link-names {
-    font-family: var(--serif);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--rule);
-    letter-spacing: 0.04em;
-  }
-
-  .media-link-cta {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
+    background: var(--ink);
+    padding: 48px 56px;
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
   }
 
-  .media-link-cta:hover { border-color: var(--gold); }
+  a.media-block:hover { background: #2a2420; }
+
+  .media-block-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .media-block-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    padding-right: 80px;
+  }
+
+  .media-block-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold-light);
+  }
+
+  .media-block-names {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.35);
+    line-height: 1.8;
+  }
+
+  .media-block-arrow {
+    position: absolute;
+    top: 48px; right: 56px;
+    width: 48px; height: 48px;
+    border: 1px solid rgba(154,123,46,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+    transition: all 0.3s;
+  }
+
+  a.media-block:hover .media-block-arrow {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
 
   /* ── CONTACT ───────────────────────────────────────────── */
   #contact {
@@ -1365,16 +1383,14 @@
       <p class="speaking-photo-caption">British Embassy Berlin · September 2019</p>
     </div>
 
-    <div class="media-link-row reveal">
-      <div>
-        <div class="media-link-label">Media appearances include</div>
-        <div class="media-link-names">WirtschaftsWoche · SPIEGEL · ZDF · FAZ · Boston Review · c't · taz · Spektrum · Handelsblatt · Die Welt</div>
+    <a href="media.html" class="media-block reveal">
+      <div class="media-block-arrow">
+        <svg width="16" height="16" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
       </div>
-      <a href="media.html" class="media-link-cta">
-        In the Media
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-      </a>
-    </div>
+      <div class="media-block-label">Press &amp; Interviews</div>
+      <div class="media-block-title">In the <em>Media</em></div>
+      <div class="media-block-names">WirtschaftsWoche · SPIEGEL · ZDF · FAZ · Boston Review · c't · taz · Spektrum · Handelsblatt · Die Welt · DeutschlandFunk · 3sat</div>
+    </a>
   </div>
 </section>
 
