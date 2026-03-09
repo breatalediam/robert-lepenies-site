@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In the Media — Robert Lepenies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1614;
+    --ink-light: #4a433e;
+    --parchment: #f5f0e8;
+    --cream:     #faf7f2;
+    --gold:      #9a7b2e;
+    --gold-light:#c4a04a;
+    --rust:      #8b3a2a;
+    --sage:      #4a6741;
+    --rule:      #d4c9b8;
+    --white:     #ffffff;
+    --serif:  'Playfair Display', Georgia, serif;
+    --body:   'Libre Baskerville', Georgia, serif;
+    --mono:   'DM Mono', monospace;
+    --col: min(680px, 90vw);
+    --wide: min(1100px, 94vw);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,240,232,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 max(24px, calc((100vw - var(--wide)) / 2));
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-name { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11px; font-weight: 300;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-light); text-decoration: none; position: relative; transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content:''; position:absolute; left:0; bottom:-2px;
+    width:0; height:1px; background:var(--gold); transition:width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-links a.active { color: var(--gold); }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 140px max(24px, calc((100vw - var(--wide)) / 2)) 80px;
+    background: var(--ink); position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: 'Media';
+    position: absolute; bottom: -60px; right: -20px;
+    font-family: var(--serif); font-size: clamp(80px,12vw,160px);
+    font-weight: 700; color: rgba(255,255,255,0.03);
+    pointer-events: none; user-select: none; white-space: nowrap;
+  }
+  .page-header .section-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .page-header .section-label::before {
+    content:''; display:block; width:32px; height:1px; background:var(--gold-light); flex-shrink:0;
+  }
+  .page-header h1 {
+    font-family: var(--serif); font-size: clamp(40px,5vw,72px);
+    font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 32px;
+  }
+  .page-header h1 em { font-style: italic; font-weight: 400; color: var(--gold-light); }
+
+  .hero-quote {
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+    margin: 0 0 40px;
+    max-width: 620px;
+  }
+  .hero-quote blockquote {
+    font-family: var(--serif); font-size: clamp(18px,2vw,24px);
+    font-style: italic; font-weight: 400;
+    line-height: 1.5; color: rgba(245,240,232,0.9);
+    margin-bottom: 10px;
+  }
+  .hero-quote cite {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold-light); font-style: normal;
+  }
+
+  .header-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--parchment); text-decoration: none;
+    padding: 12px 24px; border: 1px solid rgba(154,123,46,0.5); transition: all 0.3s;
+  }
+  .header-cta:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* SECTION LAYOUT */
+  .media-section {
+    padding: clamp(64px,8vw,100px) max(24px, calc((100vw - var(--wide)) / 2));
+  }
+  .media-section:nth-child(even) { background: var(--white); }
+  .media-section:nth-child(odd) { background: var(--parchment); }
+
+  .section-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 300;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content:''; display:block; width:32px; height:1px; background:var(--gold); flex-shrink:0;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(28px,3vw,42px);
+    font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 48px;
+  }
+  .section-title em { font-style: italic; font-weight: 400; color: var(--ink-light); }
+
+  /* LOGO STRIP */
+  .logo-strip {
+    max-width: var(--wide); margin: 0 auto;
+  }
+  .logo-strip-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-light);
+    margin-bottom: 28px; opacity: 0.6;
+  }
+  .logo-row {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .logo-item {
+    flex: 1; min-width: 100px;
+    padding: 20px 24px;
+    display: flex; align-items: center; justify-content: center;
+    border-right: 1px solid var(--rule);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { background: var(--white); }
+  .logo-text {
+    font-family: var(--serif); font-weight: 700;
+    color: var(--ink); opacity: 0.35;
+    white-space: nowrap; transition: opacity 0.2s;
+    text-align: center;
+  }
+  .logo-item:hover .logo-text { opacity: 0.7; }
+  /* Different sizes to mimic real logo variety */
+  .logo-text.lg { font-size: 18px; letter-spacing: -0.02em; }
+  .logo-text.md { font-size: 14px; letter-spacing: 0.02em; }
+  .logo-text.sm { font-size: 12px; letter-spacing: 0.06em; font-family: var(--mono); font-weight: 400; }
+
+  /* FEATURED CARDS */
+  .featured-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+    background: var(--rule); max-width: var(--wide); margin: 0 auto;
+  }
+  .featured-card {
+    background: var(--cream); padding: 36px 32px 28px;
+    display: flex; flex-direction: column; transition: background 0.25s;
+  }
+  .featured-card:hover { background: var(--white); }
+  .featured-outlet {
+    font-family: var(--serif); font-size: 22px; font-weight: 700;
+    color: var(--ink); margin-bottom: 16px; opacity: 0.5;
+    letter-spacing: -0.01em;
+  }
+  .featured-divider {
+    width: 32px; height: 1px; background: var(--gold); margin-bottom: 16px;
+  }
+  .featured-headline {
+    font-family: var(--serif); font-size: 16px; font-style: italic;
+    font-weight: 400; color: var(--ink); line-height: 1.55;
+    margin-bottom: 12px; flex: 1;
+  }
+  .featured-context {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+    color: var(--gold); margin-bottom: 20px; text-transform: uppercase;
+  }
+  .featured-link {
+    align-self: flex-start;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-light); text-decoration: none;
+    padding: 8px 16px; border: 1px solid var(--rule); transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .featured-link:hover { border-color: var(--gold); color: var(--gold); }
+  .featured-link svg { flex-shrink: 0; }
+
+  /* TOPIC GROUPS */
+  .topic-wrapper {
+    max-width: var(--wide); margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 48px;
+  }
+  .topic-group {}
+  .topic-heading {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    padding-bottom: 12px; border-bottom: 1px solid var(--gold);
+    margin-bottom: 20px;
+  }
+  .topic-item {
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .topic-item:last-child { border-bottom: none; }
+  .topic-outlet {
+    font-family: var(--serif); font-size: 14px; font-weight: 700;
+    color: var(--ink);
+  }
+  .topic-title {
+    font-size: 13px; color: var(--ink-light); line-height: 1.5;
+  }
+  .topic-link {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold); text-decoration: none;
+    margin-top: 4px; align-self: flex-start;
+    border-bottom: 1px solid transparent; transition: border-color 0.2s;
+  }
+  .topic-link:hover { border-color: var(--gold); }
+
+  /* ALSO APPEARED IN */
+  .also-strip {
+    max-width: var(--wide); margin: 0 auto;
+  }
+  .also-list {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;
+  }
+  .also-tag {
+    font-family: var(--serif); font-size: 13px; font-weight: 700;
+    color: var(--ink-light); opacity: 0.5;
+    padding: 8px 16px; border: 1px solid var(--rule);
+  }
+  .also-note {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+    color: var(--ink-light); margin-top: 16px; opacity: 0.6;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(212,201,184,0.1);
+    padding: 32px max(24px, calc((100vw - var(--wide)) / 2));
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-family: var(--serif); font-size:14px; font-weight:600; color:rgba(245,240,232,0.5); }
+  .footer-copy { font-family: var(--mono); font-size:10px; letter-spacing:0.1em; color:rgba(245,240,232,0.25); }
+
+  /* REVEAL */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  @media (max-width:900px) {
+    .featured-grid { grid-template-columns:1fr; }
+    .topic-wrapper { grid-template-columns:1fr; gap:32px; }
+    .logo-row { flex-wrap:wrap; }
+    .logo-item { flex: 0 0 33.33%; border-bottom: 1px solid var(--rule); }
+    .nav-links { display:none; }
+    footer { flex-direction:column; gap:8px; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Robert Lepenies</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="writing.html">Writing</a></li>
+    <li><a href="index.html#speaking">Speaking</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="section-label">Press &amp; Interviews</div>
+  <h1>In the<br><em>Media</em></h1>
+  <div class="hero-quote">
+    <blockquote>„Das Tool deckt auf, was im Wissenschaftsbetrieb falsch läuft."</blockquote>
+    <cite>— Wirtschaftswoche</cite>
+  </div>
+  <a href="index.html#contact" class="header-cta">
+    Media enquiries
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+  </a>
+</div>
+
+<!-- LOGO STRIP -->
+<section class="media-section">
+  <div class="logo-strip reveal">
+    <div class="logo-strip-label">Featured in</div>
+    <div class="logo-row">
+      <a href="https://www.wiwo.de/technologie/digitale-welt/chatgpt-das-tool-deckt-auf-was-im-wissenschaftsbetrieb-falsch-laeuft/28866804.html" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text lg">WirtschaftsWoche</span>
+      </a>
+      <a href="https://www.heise.de/select/ct/2023/3/2234607435104665729" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text lg">c't</span>
+      </a>
+      <span class="logo-item">
+        <span class="logo-text lg">SPIEGEL</span>
+      </span>
+      <a href="https://www.spektrum.de/video/robert-lepenies-chatgpt-schummelmaschine-oder-chance-25-11-23/2201168" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text md">Spektrum</span>
+      </a>
+      <a href="https://www.bostonreview.net/authors/robert-lepenies/" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text sm">Boston Review</span>
+      </a>
+      <span class="logo-item">
+        <span class="logo-text lg">FAZ</span>
+      </span>
+      <a href="https://taz.de/Praesident-der-Karlshochschule-ueber-KI/!5927465/" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text lg">taz</span>
+      </a>
+      <span class="logo-item">
+        <span class="logo-text md">ZDF</span>
+      </span>
+      <a href="https://www.stifterverband.org/medien/robert_lepenies_future_capabilities" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text sm">Stifterverband</span>
+      </a>
+      <a href="https://www.kulturstiftung-des-bundes.de/en/magazine/magazine_37/planning_for_coming_crises_do_we_need_to_restructure_our_institutions_for_the_next_emergency.html" target="_blank" rel="noopener" class="logo-item">
+        <span class="logo-text sm">Kulturstiftung</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED 3 -->
+<section class="media-section">
+  <div style="max-width:var(--wide);margin:0 auto;">
+    <div class="section-label">Highlights</div>
+    <h2 class="section-title">Selected <em>Features</em></h2>
+  </div>
+
+  <div class="featured-grid">
+
+    <div class="featured-card reveal">
+      <div class="featured-outlet">Wirtschafts&shy;Woche</div>
+      <div class="featured-divider"></div>
+      <div class="featured-headline">„Das Tool deckt auf, was im Wissenschaftsbetrieb falsch läuft"</div>
+      <div class="featured-context">AI &amp; Academia · Germany's leading business weekly</div>
+      <a href="https://www.wiwo.de/technologie/digitale-welt/chatgpt-das-tool-deckt-auf-was-im-wissenschaftsbetrieb-falsch-laeuft/28866804.html" target="_blank" rel="noopener" class="featured-link">
+        Read interview
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="featured-card reveal">
+      <div class="featured-outlet">Boston Review</div>
+      <div class="featured-divider"></div>
+      <div class="featured-headline">„Is Globalization to Blame?" — on trade, Polanyi, and the politics of economic losers</div>
+      <div class="featured-context">Trade &amp; Justice · International intellectual journal</div>
+      <a href="https://www.bostonreview.net/authors/robert-lepenies/" target="_blank" rel="noopener" class="featured-link">
+        Read essay
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <div class="featured-card reveal">
+      <div class="featured-outlet">Kulturstiftung des Bundes</div>
+      <div class="featured-divider"></div>
+      <div class="featured-headline">„Planning for Coming Crises" — joint interview with Alena Buyx, Chair of the German Ethics Council</div>
+      <div class="featured-context">Institutional Reform · Federal Cultural Foundation</div>
+      <a href="https://www.kulturstiftung-des-bundes.de/en/magazine/magazine_37/planning_for_coming_crises_do_we_need_to_restructure_our_institutions_for_the_next_emergency.html" target="_blank" rel="noopener" class="featured-link">
+        Read interview
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOPIC GROUPS -->
+<section class="media-section">
+  <div style="max-width:var(--wide);margin:0 auto;">
+    <div class="section-label">By topic</div>
+    <h2 class="section-title">More <em>Conversations</em></h2>
+  </div>
+
+  <div class="topic-wrapper">
+
+    <div class="topic-group reveal">
+      <div class="topic-heading">AI &amp; Higher Education</div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">c't / Heise Magazine</div>
+        <div class="topic-title">„KI rüttelt uns hier wach" — c't issue 3/2023</div>
+        <a href="https://www.heise.de/select/ct/2023/3/2234607435104665729" target="_blank" rel="noopener" class="topic-link">heise.de ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">Table.Media / Research</div>
+        <div class="topic-title">„ChatGPT zwingt uns, über den Kern wissenschaftlichen Arbeitens nachzudenken"</div>
+        <a href="https://table.media/research/analyse/chatgpt-zwingt-uns-ueber-den-kern-wissenschaftlichen-arbeitens-nachzudenken/" target="_blank" rel="noopener" class="topic-link">table.media ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">Spektrum der Wissenschaft</div>
+        <div class="topic-title">„ChatGPT – Schummelmaschine oder Chance?" — video interview</div>
+        <a href="https://www.spektrum.de/video/robert-lepenies-chatgpt-schummelmaschine-oder-chance-25-11-23/2201168" target="_blank" rel="noopener" class="topic-link">spektrum.de ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">taz</div>
+        <div class="topic-title">„Präsident der Karlshochschule über KI: ‚Es gibt noch genug zu tun'"</div>
+        <a href="https://taz.de/Praesident-der-Karlshochschule-ueber-KI/!5927465/" target="_blank" rel="noopener" class="topic-link">taz.de ↗</a>
+      </div>
+    </div>
+
+    <div class="topic-group reveal">
+      <div class="topic-heading">Nudging &amp; Behaviour</div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">Die Debatte</div>
+        <div class="topic-title">„Die Verhaltenspsychologie wird eine wichtige Rolle spielen" — nudging and Covid</div>
+        <a href="https://www.die-debatte.org/corona-interview-lepenies/" target="_blank" rel="noopener" class="topic-link">die-debatte.org ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">The Governance Post</div>
+        <div class="topic-title">„5 Questions: Nudging and Development"</div>
+        <a href="https://www.thegovernancepost.org/2017/09/nudging-and-development/" target="_blank" rel="noopener" class="topic-link">thegovernancepost.org ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">International Science Council</div>
+        <div class="topic-title">„The wonderful world of science communication on TikTok" — cited as @TheTikTokScientist</div>
+        <a href="https://council.science/wp-content/uploads/2020/06/TikTokScience.pdf" target="_blank" rel="noopener" class="topic-link">council.science ↗</a>
+      </div>
+    </div>
+
+    <div class="topic-group reveal">
+      <div class="topic-heading">Science Communication</div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">Wissenschafts&shy;kommunikation.de</div>
+        <div class="topic-title">„Wir müssen dahin, wo die Leute sind" — on TikTok and public science strategy</div>
+        <a href="https://www.wissenschaftskommunikation.de/wir-muessen-dahin-wo-die-leute-sind-36593/" target="_blank" rel="noopener" class="topic-link">wissenschaftskommunikation.de ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">Stifterverband</div>
+        <div class="topic-title">„Future Capabilities" — video talk, Germany's main corporate science foundation</div>
+        <a href="https://www.stifterverband.org/medien/robert_lepenies_future_capabilities" target="_blank" rel="noopener" class="topic-link">stifterverband.org ↗</a>
+      </div>
+
+      <div class="topic-item">
+        <div class="topic-outlet">Watson.ch</div>
+        <div class="topic-title">„Studierende werden nicht dümmer durch KI, aber sie können klüger wirken, als sie sind"</div>
+        <a href="https://www.watson.ch/wirtschaft/schweiz/672384465-wie-die-kuenstliche-intelligenz-die-studierenden-und-unis-beeinflusst" target="_blank" rel="noopener" class="topic-link">watson.ch ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ALSO APPEARED IN -->
+<section class="media-section">
+  <div class="also-strip reveal">
+    <div class="section-label">Also appeared in</div>
+    <div class="also-list">
+      <span class="also-tag">SPIEGEL ×2</span>
+      <span class="also-tag">ZDF Morgenmagazin ×2</span>
+      <span class="also-tag">3sat Kulturzeit</span>
+      <span class="also-tag">Handelsblatt</span>
+      <span class="also-tag">Die Welt</span>
+      <span class="also-tag">DeutschlandFunk</span>
+      <span class="also-tag">Heise Online</span>
+      <span class="also-tag">Stiftung Innovation in der Hochschullehre</span>
+    </div>
+    <p class="also-note">Archive links for some items are being recovered and will be added.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Robert Lepenies</div>
+  <div class="footer-copy">© 2026 · team@robertlepenies.com</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => { entry.target.classList.add('visible'); }, idx * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
