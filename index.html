@@ -625,16 +625,18 @@
     margin: 0 auto 80px;
   }
 
-  .theme {
+  a.theme {
     background: var(--cream);
     padding: 40px 32px;
     position: relative;
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
     transition: background 0.3s;
+    text-decoration: none;
+    display: block;
   }
 
-  .theme:hover { background: var(--white); }
+  a.theme:hover { background: var(--white); }
 
   .theme-number {
     font-family: var(--serif);
@@ -647,7 +649,7 @@
     transition: color 0.3s;
   }
 
-  .theme:hover .theme-number { color: rgba(154, 123, 46, 0.15); }
+  a.theme:hover .theme-number { color: rgba(154, 123, 46, 0.15); }
 
   .theme-name {
     font-family: var(--serif);
@@ -656,6 +658,10 @@
     color: var(--ink);
     margin-bottom: 12px;
     position: relative;
+  }
+
+  a.theme:hover .theme-name {
+    color: var(--gold);
   }
 
   .theme-desc {
@@ -981,8 +987,6 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="publications.html">Publications</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="#speaking">Speaking</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1199,36 +1203,36 @@
   <div style="height:48px;"></div>
 
   <div class="themes-grid reveal">
-    <div class="theme">
+    <a href="publications.html" class="theme">
       <div class="theme-number">01</div>
       <div class="theme-name">Institutional Design &amp; Governance</div>
       <div class="theme-desc">How institutions encode norms, why they resist change, and what it takes to redesign them. From nudging to SDG indicator politics.</div>
-    </div>
-    <div class="theme">
+    </a>
+    <a href="publications.html" class="theme">
       <div class="theme-number">02</div>
       <div class="theme-name">Sustainability &amp; Environmental Policy</div>
       <div class="theme-desc">The political economy of sustainable development. SDG governance, water policy, citizen science, and the politics of indicators.</div>
-    </div>
-    <div class="theme">
+    </a>
+    <a href="publications.html" class="theme">
       <div class="theme-number">03</div>
       <div class="theme-name">Behavioural Policy &amp; Ethics</div>
       <div class="theme-desc">The institutional consequences of nudging. What behavioural science means for democratic governance and political legitimacy.</div>
-    </div>
-    <div class="theme">
+    </a>
+    <a href="publications.html" class="theme">
       <div class="theme-number">04</div>
       <div class="theme-name">Trade Justice &amp; Global Poverty</div>
       <div class="theme-desc">Who bears the costs of international trade? The normative frameworks that justify — and obscure — economic losers.</div>
-    </div>
-    <div class="theme">
+    </a>
+    <a href="publications.html" class="theme">
       <div class="theme-number">05</div>
       <div class="theme-name">Higher Education &amp; AI</div>
       <div class="theme-desc">The transformation of the university in the age of artificial intelligence. Responsible AI, academic integrity, and the future of knowledge institutions.</div>
-    </div>
-    <div class="theme">
+    </a>
+    <a href="publications.html" class="theme">
       <div class="theme-number">06</div>
       <div class="theme-name">Science Communication</div>
       <div class="theme-desc">Science as civic infrastructure. The role of public intellectuals and the conditions under which knowledge shapes democratic life.</div>
-    </div>
+    </a>
   </div>
 
   <div style="height:80px;"></div>
